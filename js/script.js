@@ -5,17 +5,30 @@ $(document).ready(function() {
   var template = Handlebars.compile(source);
   getToDoList(source, template);
 
-  $(document).on('blur', '.textarea',
-  function() {
-    var newElementContent = $(this).val();
-    var thisElementId = $(this).parent().attr('data-id');
-    editElementInToDoList(thisElementId, newElementContent, source, template)
-  });
+  // $(document).on('focus', '.textarea',
+  // function() {
+  //   var thisElementContent = $(this).val();
+  //   var thisElementId = $(this).parent().attr('data-id');
+  //   $(this).on('blur',
+  //   function(){
+  //     var newElementContent = $(this).val();
+  //     if (thisElementContent != newElementContent) {
+  //       editElementInToDoList(thisElementId, newElementContent, source, template)
+  //     }
+  //   });
+  // });
+
+
+  // $(document).on('click', '.edit',
+  // function() {
+  //   $(this).parent().siblings('.textarea').focus();
+  // });
 
   $(document).on('focus', '#element-content',
     function(event) {
-      $(this).on('keydown', function(event) {
+      $(this).on('keyup', function(event) {
         if(event.keyCode == 13) {
+          event.preventDefault();
           $('#create-element').click();
         }
       });
@@ -86,8 +99,8 @@ function createElementInToDoList(elementContent, source, template) {
       success:
       function(response) {
         getToDoList(source, template);
-        $('#element-content').val('');
-        $('#element-content').focus();
+        // $('#element-content').val('');
+        // $('#element-content').focus();
       },
       error: function(request, stats, errors) {
         alert('Mhè '+errors);
