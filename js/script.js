@@ -8,8 +8,8 @@ $(document).ready(function() {
   $(document).on('blur', '.textarea',
   function() {
     var newElementContent = $(this).val();
-    var elementId = $(this).parent().attr('data-id');
-    editElementInToDoList(elementId, newElementContent, source, template)
+    var thisElementId = $(this).parent().attr('data-id');
+    editElementInToDoList(thisElementId, newElementContent, source, template)
   });
 
   $(document).on('focus', '#element-content',
@@ -24,7 +24,7 @@ $(document).ready(function() {
 
   $(document).on('click', '.delete',
     function() {
-      var thisElement = $(this).parent().attr('data-id');
+      var thisElement = $(this).parents('.element').attr('data-id');
       deleteElementInToDoList(thisElement, source, template);
     });
 
@@ -33,7 +33,7 @@ $(document).ready(function() {
       var elementContent = $('#element-content').val();
       createElementInToDoList(elementContent, source, template);
     });
-    
+
 });
 
 // ↑ corpo principale dello script ↑
