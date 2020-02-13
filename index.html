@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- libreria handlebars -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.2/handlebars.min.js" integrity="sha256-MlbTFXdOM7EZphnz0OyXQqPt2zBOjfRXCq14CfgSsS0=" crossorigin="anonymous"></script>
+  <!-- libreria fontawesome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0=" crossorigin="anonymous"></script>
   <!-- libreria jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <!-- libreria moment.js -->
@@ -23,8 +25,9 @@
   </main>
 
   <script id="element" type="text/x-handlebars-template">
-    <li class="element">
-      <p>{{text}}</p>
+    <li class="element" data-id="{{id}}">
+      <span>{{text}} </span>
+      <span class="delete"><i class="fas fa-trash"></i></span>
     </li>
   </script>
 
