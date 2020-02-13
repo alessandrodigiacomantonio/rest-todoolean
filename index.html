@@ -20,16 +20,19 @@
 </head>
 <body class="body">
   <main id="main">
-    <input id="element-content" type="text" placeholder="Aggiungi un elemento alla lista" tabindex="1">
-    <button id="create-element" tabindex="2">Aggiungi</button>
+    <input id="element-content" type="text" placeholder="Aggiungi un elemento alla lista" tabindex="1" title="Inserisci elemento da aggiungere">
+    <button id="create-element" tabindex="2" title="Aggiungi">Aggiungi</button>
     <ol id="element_list">
     </ol>
   </main>
 
   <script id="element" type="text/x-handlebars-template">
     <li class="element" data-id="{{id}}">
-      <span>{{text}} </span>
-      <button class="delete" tabindex="{{index}}" role="button"><i class="fas fa-trash"></i></button>
+      <textarea class="textarea">{{text}}</textarea>
+      <div class="buttons">
+        <button class="edit" tabindex="{{index}}" role="button" title="Modifica"><i class="fas fa-pen"></i></button>
+        <button class="delete" tabindex="{{index}}" role="button" title="Elimina"><i class="fas fa-trash"></i></button>
+      </div>
     </li>
   </script>
 

@@ -14,4 +14,20 @@
 }
 .element {
   margin: 0 0 10px 20px;
+  position: relative;
+  padding-right: 50px;
+}
+
+.buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.textarea {
+  border: none;
+  background: none;
+}
+
+::-webkit-scrollbar {
+  visibility: hidden;
 }

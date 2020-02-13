@@ -1,23 +1,39 @@
 // ↓ corpo principale dello script ↓
 $(document).ready(function() {
-  $(document).on('focus', '#element-content', function(event) {
-    $(this).on('keydown', function(event) {
-      if(event.keyCode == 13) $('#create-element').click();
-    });
-  });
+
   var source = $('#element').html();
   var template = Handlebars.compile(source);
   getToDoList(source, template);
+
+  $(document).on('blur', '.textarea',
+  function() {
+    var newElementContent = $(this).val();
+    var elementId = $(this).parent().attr('data-id');
+    editElementInToDoList(elementId, newElementContent, source, template)
+  });
+
+  $(document).on('focus', '#element-content',
+    function(event) {
+      $(this).on('keydown', function(event) {
+        if(event.keyCode == 13) {
+          $('#create-element').click();
+        }
+      });
+    }
+  );
+
   $(document).on('click', '.delete',
     function() {
       var thisElement = $(this).parent().attr('data-id');
       deleteElementInToDoList(thisElement, source, template);
     });
+
   $(document).on('click','#create-element',
     function() {
       var elementContent = $('#element-content').val();
       createElementInToDoList(elementContent, source, template);
     });
+    
 });
 
 // ↑ corpo principale dello script ↑
@@ -80,7 +96,7 @@ function createElementInToDoList(elementContent, source, template) {
   );
 }
 
-function editElementInToDoList(elementId, source, template) {
+function editElementInToDoList(elementId, elementContent, source, template) {
   $.ajax(
     {
       url: "http://157.230.17.132:3011/todos/"+elementId,
