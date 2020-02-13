@@ -8,7 +8,12 @@ $(document).ready(function() {
     function() {
       var thisElement = $(this).parent().attr('data-id');
       deleteElementInToDoList(thisElement, source, template);
-    })
+    });
+  $(document).on('click','#create-element',
+    function() {
+      var elementContent = $('#element-content').val();
+      createElementInToDoList(elementContent, source, template);
+    });
 });
 
 // ↑ corpo principale dello script ↑
@@ -48,7 +53,7 @@ function deleteElementInToDoList(elementId, source, template) {
   );
 }
 
-function createElementInToDoList(elementContent) {
+function createElementInToDoList(elementContent, source, template) {
   $.ajax(
     {
       url: "http://157.230.17.132:3011/todos",
@@ -58,7 +63,7 @@ function createElementInToDoList(elementContent) {
       },
       success:
       function(response) {
-        console.log(reponse.response);
+        getToDoList(source, template);
       },
       error: function(request, stats, errors) {
         alert('Mhè '+errors);
