@@ -1,6 +1,10 @@
 // ↓ corpo principale dello script ↓
 $(document).ready(function() {
-
+  $(document).on('focus', '#element-content', function(event) {
+    $(this).on('keydown', function(event) {
+      if(event.keyCode == 13) $('#create-element').click();
+    });
+  });
   var source = $('#element').html();
   var template = Handlebars.compile(source);
   getToDoList(source, template);
@@ -27,6 +31,7 @@ function getToDoList(source, template) {
       success:
       function(response) {
         for (var elementNumber = 0; elementNumber < response.length; elementNumber++) {
+          response[elementNumber].index = elementNumber+2;
           $('#element_list').append( template(response[elementNumber]) );
         }
       },
@@ -45,6 +50,7 @@ function deleteElementInToDoList(elementId, source, template) {
       success:
       function(response) {
         getToDoList(source, template);
+        $('#element-content').focus();
       },
       error: function(request, stats, errors) {
         alert('Mhè '+errors);
@@ -64,6 +70,8 @@ function createElementInToDoList(elementContent, source, template) {
       success:
       function(response) {
         getToDoList(source, template);
+        $('#element-content').val('');
+        $('#element-content').focus();
       },
       error: function(request, stats, errors) {
         alert('Mhè '+errors);

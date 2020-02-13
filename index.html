@@ -20,8 +20,8 @@
 </head>
 <body class="body">
   <main id="main">
-    <input id="element-content" type="text" placeholder="Aggiungi un elemento alla lista">
-    <button id="create-element">Aggiungi</button>
+    <input id="element-content" type="text" placeholder="Aggiungi un elemento alla lista" tabindex="1">
+    <button id="create-element" tabindex="2">Aggiungi</button>
     <ol id="element_list">
     </ol>
   </main>
@@ -29,7 +29,7 @@
   <script id="element" type="text/x-handlebars-template">
     <li class="element" data-id="{{id}}">
       <span>{{text}} </span>
-      <span class="delete"><i class="fas fa-trash"></i></span>
+      <button class="delete" tabindex="{{index}}" role="button"><i class="fas fa-trash"></i></button>
     </li>
   </script>
 
